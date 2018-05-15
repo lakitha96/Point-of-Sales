@@ -30,7 +30,7 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
-    public List<CustomerDTO> findAll() {
+    public List<CustomerDTO> getAll() {
         return null;
     }
 }

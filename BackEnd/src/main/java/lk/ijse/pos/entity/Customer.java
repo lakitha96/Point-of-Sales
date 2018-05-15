@@ -1,4 +1,5 @@
-package lk.ijse.pos.domain;
+package lk.ijse.pos.entity;
+
 
 import javax.persistence.*;
 import java.util.Objects;
@@ -8,11 +9,11 @@ import java.util.Objects;
  */
 
 @Entity
-@Table (name = "customer")
+@Table(name = "customer")
 public class Customer {
 
     @Id
-    @GeneratedValue (strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private int id;
 
@@ -26,6 +27,7 @@ public class Customer {
     private String contacts;
 
     public Customer() {
+        System.out.println("In Customer Entity");
     }
 
     public Customer(String name, String address, String contacts) {

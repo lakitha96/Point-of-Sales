@@ -1,4 +1,4 @@
-package lk.ijse.pos.domain;
+package lk.ijse.pos.entity;
 
 import javax.persistence.*;
 import java.util.Objects;

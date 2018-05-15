@@ -17,6 +17,6 @@ public interface ItemService {
 
     public boolean delete (int id);
 
-    public List<CustomerDTO> findAll ();
+    public List<CustomerDTO> getAll ();
 
 }
