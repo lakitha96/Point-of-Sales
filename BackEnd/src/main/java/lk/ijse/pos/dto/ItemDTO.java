@@ -1,9 +1,11 @@
 package lk.ijse.pos.dto;
 
+import java.io.Serializable;
+
 /**
  * @author lakitha
  */
-public class ItemDTO {
+public class ItemDTO implements Serializable {
     private int id;
     private String name;
     private double price;

@@ -15,7 +15,7 @@ public interface CustomerRepository  {
 
     public boolean update (Customer customer);
 
-    public boolean delete (int id);
+    public void delete (Customer customer);
 
     public List<Customer> getAll ();
 }

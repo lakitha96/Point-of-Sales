@@ -1,6 +1,7 @@
 package lk.ijse.pos.service;
 
 import lk.ijse.pos.dto.CustomerDTO;
+import lk.ijse.pos.dto.ItemDTO;
 
 import java.util.List;
 
@@ -9,14 +10,14 @@ import java.util.List;
  */
 public interface ItemService {
 
-    public boolean save(CustomerDTO customerDTO);
+    public boolean save(ItemDTO itemDTO);
 
-    public CustomerDTO findByID (int id);
+    public ItemDTO findByID (int id);
 
-    public boolean update (CustomerDTO customerDTO);
+    public boolean update (ItemDTO itemDTO);
 
     public boolean delete (int id);
 
-    public List<CustomerDTO> getAll ();
+    public List<ItemDTO> getAll ();
 
 }

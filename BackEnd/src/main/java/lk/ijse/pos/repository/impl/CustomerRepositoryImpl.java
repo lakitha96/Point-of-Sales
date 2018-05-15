@@ -16,7 +16,6 @@ import java.util.List;
  */
 
 @Repository
-@Transactional
 public class CustomerRepositoryImpl implements CustomerRepository {
 
     @Autowired
@@ -37,7 +36,8 @@ public class CustomerRepositoryImpl implements CustomerRepository {
 
     @Override
     public Customer findByID(int id) {
-        Customer customer = (Customer) currentSession().createQuery("from Customer where id='" + id+ "'").list().get(0);
+        Customer customer = currentSession().get(Customer.class, id);
+        currentSession().clear();
         return customer;
     }
 
@@ -48,16 +48,13 @@ public class CustomerRepositoryImpl implements CustomerRepository {
     }
 
     @Override
-    public boolean delete(int id) {
-        currentSession().delete(findByID(id));
-        return true;
+    public void delete(Customer customer) {
+        currentSession().delete(customer);
     }
 
     @Override
     public List<Customer> getAll() {
-        List<Customer> allCus = currentSession().createQuery("FROM " + Customer.class.getSimpleName()).list();
-        System.out.println(allCus.isEmpty() + " check all cus ");
-        return allCus;
+        return currentSession().createCriteria(Customer.class).list();
     }
 
 

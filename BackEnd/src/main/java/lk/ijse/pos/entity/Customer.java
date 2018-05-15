@@ -2,6 +2,7 @@ package lk.ijse.pos.entity;
 
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
@@ -10,7 +11,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "customer")
-public class Customer {
+public class Customer implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

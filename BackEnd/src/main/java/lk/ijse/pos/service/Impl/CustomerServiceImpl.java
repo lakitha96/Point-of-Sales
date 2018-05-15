@@ -29,8 +29,12 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public CustomerDTO findByID(int id) {
-        Customer customer=customerRepository.findByID(id);
-        return new CustomerDTO(customer.getId(),customer.getName(), customer.getAddress(), customer.getContacts());
+        Customer customer=null;
+        if(customerRepository.findByID(id)!=null){
+            customer = customerRepository.findByID(id);
+            return new CustomerDTO(customer.getId(),customer.getName(), customer.getAddress(), customer.getContacts());
+        }
+        return null;
     }
 
     @Override
@@ -40,17 +44,26 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public boolean delete(int id) {
-        return customerRepository.delete(id);
+        CustomerDTO cus=findByID(id);
+        if(cus!=null){
+            customerRepository.delete(new Customer(cus.getId(), cus.getName(), cus.getAddress(), cus.getContacts()));
+            return true;
+        }
+        return false;
     }
 
     @Override
     public List<CustomerDTO> getAll() {
 
         List<CustomerDTO> allCustomers = new ArrayList<>();
-        for (Customer customer  : customerRepository.getAll()) {
-            CustomerDTO customerDTO = new CustomerDTO(customer.getId(), customer.getName(), customer.getAddress(), customer.getContacts());
-            allCustomers.add(customerDTO);
-        };
-        return allCustomers;
+        if(customerRepository.getAll()!= null){
+            for (Customer customer  : customerRepository.getAll()) {
+                CustomerDTO customerDTO = new CustomerDTO(customer.getId(), customer.getName(), customer.getAddress(), customer.getContacts());
+                allCustomers.add(customerDTO);
+            };
+            return allCustomers;
+        }
+
+        return null;
     }
 }

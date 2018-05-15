@@ -1,9 +1,11 @@
 package lk.ijse.pos.dto;
 
+import java.io.Serializable;
+
 /**
  * @author lakitha
  */
-public class CustomerDTO {
+public class CustomerDTO implements Serializable{
     private int id;
     private String name;
     private String address;
