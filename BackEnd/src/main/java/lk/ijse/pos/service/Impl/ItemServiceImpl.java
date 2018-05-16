@@ -1,9 +1,7 @@
 package lk.ijse.pos.service.Impl;
 
-import lk.ijse.pos.dto.CustomerDTO;
 import lk.ijse.pos.dto.ItemDTO;
 import lk.ijse.pos.entity.Item;
-import lk.ijse.pos.repository.CustomerRepository;
 import lk.ijse.pos.repository.ItemRepository;
 import lk.ijse.pos.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,18 +33,18 @@ public class ItemServiceImpl implements ItemService{
     }
 
     @Override
-    public ItemDTO findByID(int id) {
-        Optional<Item> byId = itemRepository.findById(id);
+    public ItemDTO findByID(int iid) {
+        Optional<Item> byId = itemRepository.findById(iid);
         if(byId.isPresent()){
-            return new ItemDTO(byId.get().getId(),byId.get().getName(), byId.get().getPrice(), byId.get().getQty());
+            return new ItemDTO(byId.get().getIid(),byId.get().getName(), byId.get().getPrice(), byId.get().getQty());
         }
         return null;
     }
 
     @Override
     public boolean update(ItemDTO itemDTO) {
-        if((findByID(itemDTO.getId()))!=null) {
-            Item save = itemRepository.save(new Item(itemDTO.getId(), itemDTO.getName(), itemDTO.getPrice(), itemDTO.getQty()));
+        if((findByID(itemDTO.getIid()))!=null) {
+            Item save = itemRepository.save(new Item(itemDTO.getIid(), itemDTO.getName(), itemDTO.getPrice(), itemDTO.getQty()));
             if (save != null) {
                 return true;
             }
@@ -58,7 +56,7 @@ public class ItemServiceImpl implements ItemService{
     public boolean delete(int id) {
         ItemDTO itemDTO=findByID(id);
         if(itemDTO!=null){
-            itemRepository.delete(new Item(itemDTO.getId(), itemDTO.getName(), itemDTO.getPrice(), itemDTO.getQty()));
+            itemRepository.delete(new Item(itemDTO.getIid(), itemDTO.getName(), itemDTO.getPrice(), itemDTO.getQty()));
             return true;
         }
         return false;
@@ -69,7 +67,7 @@ public class ItemServiceImpl implements ItemService{
         List<ItemDTO> allCustomers = new ArrayList<>();
         if(itemRepository.findAll()!= null){
             for (Item item  : itemRepository.findAll()) {
-                ItemDTO itemDTO = new ItemDTO(item.getId(), item.getName(), item.getPrice(), item.getQty());
+                ItemDTO itemDTO = new ItemDTO(item.getIid(), item.getName(), item.getPrice(), item.getQty());
                 allCustomers.add(itemDTO);
             };
             return allCustomers;

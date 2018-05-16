@@ -15,16 +15,9 @@ public class Customer implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
-    private int id;
-
-    @Column(name = "name")
+    private int cid;
     private String name;
-
-    @Column(name = "address")
     private String address;
-
-    @Column(name = "contacts")
     private String contacts;
 
     public Customer() {
@@ -37,19 +30,19 @@ public class Customer implements Serializable{
         this.contacts = contacts;
     }
 
-    public Customer(int id, String name, String address, String contacts) {
-        this.id = id;
+    public Customer(int cid, String name, String address, String contacts) {
+        this.cid = cid;
         this.name = name;
         this.address = address;
         this.contacts = contacts;
     }
 
-    public int getId() {
-        return id;
+    public int getCid() {
+        return cid;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setCid(int cid) {
+        this.cid = cid;
     }
 
     public String getName() {
@@ -81,7 +74,7 @@ public class Customer implements Serializable{
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Customer customer = (Customer) o;
-        return id == customer.id &&
+        return cid == customer.cid &&
                 Objects.equals(name, customer.name) &&
                 Objects.equals(address, customer.address) &&
                 Objects.equals(contacts, customer.contacts);
@@ -90,6 +83,6 @@ public class Customer implements Serializable{
     @Override
     public int hashCode() {
 
-        return Objects.hash(id, name, address, contacts);
+        return Objects.hash(cid, name, address, contacts);
     }
 }

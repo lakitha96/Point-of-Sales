@@ -10,20 +10,12 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "item")
-public class Item implements Serializable{
+public class Item implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-
-    @Column(name = "id")
-    private int id;
-
-    @Column(name = "name")
+    @GeneratedValue (strategy = GenerationType.AUTO)
+    private int iid;
     private String name;
-
-    @Column(name = "price")
     private double price;
-
-    @Column(name = "qty")
     private int qty;
 
     public Item() {
@@ -35,19 +27,19 @@ public class Item implements Serializable{
         this.qty = qty;
     }
 
-    public Item(int id, String name, double price, int qty) {
-        this.id = id;
+    public Item(int iid, String name, double price, int qty) {
+        this.iid = iid;
         this.name = name;
         this.price = price;
         this.qty = qty;
     }
 
-    public int getId() {
-        return id;
+    public int getIid() {
+        return iid;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIid(int iid) {
+        this.iid = iid;
     }
 
     public String getName() {
@@ -75,18 +67,12 @@ public class Item implements Serializable{
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Item item = (Item) o;
-        return id == item.id &&
-                Double.compare(item.price, price) == 0 &&
-                qty == item.qty &&
-                Objects.equals(name, item.name);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name, price, qty);
+    public String toString() {
+        return "Item{" +
+                "iid=" + iid +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                ", qty=" + qty +
+                '}';
     }
 }

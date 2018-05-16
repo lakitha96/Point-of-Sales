@@ -36,15 +36,15 @@ public class CustomerServiceImpl implements CustomerService{
     public CustomerDTO findByID(int id) {
         Optional<Customer> byId = customerRepository.findById(id);
         if(byId.isPresent()){
-            return new CustomerDTO(byId.get().getId(), byId.get().getName(), byId.get().getAddress(), byId.get().getContacts());
+            return new CustomerDTO(byId.get().getCid(), byId.get().getName(), byId.get().getAddress(), byId.get().getContacts());
         }
         return null;
     }
 
     @Override
     public boolean update(CustomerDTO customerDTO) {
-        if((findByID(customerDTO.getId()))!=null){
-            Customer save = customerRepository.save(new Customer(customerDTO.getId(), customerDTO.getName(), customerDTO.getAddress(), customerDTO.getContacts()));
+        if((findByID(customerDTO.getCid()))!=null){
+            Customer save = customerRepository.save(new Customer(customerDTO.getCid(), customerDTO.getName(), customerDTO.getAddress(), customerDTO.getContacts()));
             if (save != null) {
                 return true;
             }
@@ -56,7 +56,7 @@ public class CustomerServiceImpl implements CustomerService{
     public boolean delete(int id) {
         CustomerDTO cus=findByID(id);
         if(cus!=null){
-            customerRepository.delete(new Customer(cus.getId(), cus.getName(), cus.getAddress(), cus.getContacts()));
+            customerRepository.delete(new Customer(cus.getCid(), cus.getName(), cus.getAddress(), cus.getContacts()));
             return true;
         }
         return false;
@@ -68,7 +68,7 @@ public class CustomerServiceImpl implements CustomerService{
         List<CustomerDTO> allCustomers = new ArrayList<>();
         if(customerRepository.findAll()!= null){
             for (Customer customer  : customerRepository.findAll()) {
-                CustomerDTO customerDTO = new CustomerDTO(customer.getId(), customer.getName(), customer.getAddress(), customer.getContacts());
+                CustomerDTO customerDTO = new CustomerDTO(customer.getCid(), customer.getName(), customer.getAddress(), customer.getContacts());
                 allCustomers.add(customerDTO);
             };
             return allCustomers;

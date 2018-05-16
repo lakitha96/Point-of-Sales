@@ -6,19 +6,12 @@ import java.io.Serializable;
  * @author lakitha
  */
 public class CustomerDTO implements Serializable{
-    private int id;
+    private int cid;
     private String name;
     private String address;
     private String contacts;
 
     public CustomerDTO() {
-    }
-
-    public CustomerDTO(int id, String name, String address, String contacts) {
-        this.id = id;
-        this.name = name;
-        this.address = address;
-        this.contacts = contacts;
     }
 
     public CustomerDTO(String name, String address, String contacts) {
@@ -27,12 +20,19 @@ public class CustomerDTO implements Serializable{
         this.contacts = contacts;
     }
 
-    public int getId() {
-        return id;
+    public CustomerDTO(int cid, String name, String address, String contacts) {
+        this.cid = cid;
+        this.name = name;
+        this.address = address;
+        this.contacts = contacts;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public int getCid() {
+        return cid;
+    }
+
+    public void setCid(int cid) {
+        this.cid = cid;
     }
 
     public String getName() {
@@ -62,7 +62,7 @@ public class CustomerDTO implements Serializable{
     @Override
     public String toString() {
         return "CustomerDTO{" +
-                "id=" + id +
+                "cid=" + cid +
                 ", name='" + name + '\'' +
                 ", address='" + address + '\'' +
                 ", contacts='" + contacts + '\'' +

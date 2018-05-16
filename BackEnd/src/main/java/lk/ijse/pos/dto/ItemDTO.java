@@ -1,12 +1,13 @@
 package lk.ijse.pos.dto;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 /**
  * @author lakitha
  */
 public class ItemDTO implements Serializable {
-    private int id;
+    private int iid;
     private String name;
     private double price;
     private int qty;
@@ -20,19 +21,19 @@ public class ItemDTO implements Serializable {
         this.qty = qty;
     }
 
-    public ItemDTO(int id, String name, double price, int qty) {
-        this.id = id;
+    public ItemDTO(int iid, String name, double price, int qty) {
+        this.iid = iid;
         this.name = name;
         this.price = price;
         this.qty = qty;
     }
 
-    public int getId() {
-        return id;
+    public int getIid() {
+        return iid;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIid(int iid) {
+        this.iid = iid;
     }
 
     public String getName() {
@@ -60,12 +61,19 @@ public class ItemDTO implements Serializable {
     }
 
     @Override
-    public String toString() {
-        return "ItemDTO{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", price=" + price +
-                ", qty=" + qty +
-                '}';
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ItemDTO itemDTO = (ItemDTO) o;
+        return iid == itemDTO.iid &&
+                Double.compare(itemDTO.price, price) == 0 &&
+                qty == itemDTO.qty &&
+                Objects.equals(name, itemDTO.name);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(iid, name, price, qty);
     }
 }
