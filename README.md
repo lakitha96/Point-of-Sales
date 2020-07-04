@@ -1,1 +1,1 @@
-# Point-of-Sales
+# E-Commerce Backend Application with SpringBoot
